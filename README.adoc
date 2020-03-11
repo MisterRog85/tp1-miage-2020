@@ -5,7 +5,7 @@ NOTE: TP de deux slots de 1h20
 ## Nom des étudiants de ce binôme 
 WARNING: NE PAS OUBLIER DE MENTIONNER LES DEUX NOMS !
 
-#XXX# et #YYY#
+#XXXWilliam Tomas# et #Chloé Bail#
 
 Commentaires éventuels des étudiants : #XXXXXX#
 
@@ -49,9 +49,15 @@ _Temps estimé : 1 h_
 
 IMPORTANT: [Question]  Le code est-il structuré en couches ? Imaginez un projet d'entreprise constitué de centaines de classes ainsi structuré : que risque-t-il d'arriver ?
 
+REPONSE: Le projet ne semble pas être en architecture en couche car il ne dispose que d'un seul package. Dans le cas d'un projet comportant une centaine de fihciers, les développeurs seraient vite dépassés et la maintenance serait très délicate. 
+
 IMPORTANT: [Question]  Que se passe-t-il si l'on renomme une colonne de la base de donnée ?
 
+REPONSE: Si on renomme une colonne il faut mettre à jour l'entité. Sans cela pas de mapping par Spring. Cela est jouabe pour notre projet comportant seulement une entité mais pour un projet avec plus d'éléments la difficulté de maintenance deviendra vite exponentielle.
+
 IMPORTANT: [Question]  Où se trouve le code métier (voir la règle de gestion RG1) ? cette règle est-elle facilement testable par un test unitaire ? 
+
+REPONSE: Le code métier se trouve pour l'instant dans le contrôleur (TodoListController). Cette règle n'est pas facilement testable car on ne sait pas si on parle d'un jour ou de 24 heures.
 
 * Lancer une base PostgreSQL en Docker :
 ```bash
@@ -59,11 +65,19 @@ docker run --rm -it -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 ```
 IMPORTANT: [Question]  Expliquer cette ligne de commande (y compris les options utilisées)
 
+La commande permet de lancer le container docker pour postgres. On y indique le mot de passe pour la connexion, le port utilisé ainsi que le nom de la base utilisée (postgres). L'option rm permet de supprimer le conteneur à la fin de l'execution, i affiche les logs du conteneur, t permet d'avoir un terminal propre au conteneur pour y taper des commandes.
+
 IMPORTANT: [Question]  Lancer les commandes `docker ps` et `ps -eaf | grep postgres`, à quoi correspondent les lignes affichées ? Que remarquez vous ?
+
+Les lignes affichées correspondent aux conteneurs docker qui tournent sur la machine. On y retrouve l'id, l'image qui tourne, la date de creation, le status et les ports utilisés par le conteneur.
 
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
+REPONSE: this.todoItemRepository.save(todoItem);
+
 * IMPORTANT: [Question] Pourquoi `todoItemRepository` est-il `null` ? Quelle est la meilleure façon de l'injecter ? 
+
+REPONSE: Parce que la dépendance n'est pas injectée, il suffit de rajouter "@Inject" au dessus de la fonction "todoListController".
 
 * Modifier le code en conséquence.
 
