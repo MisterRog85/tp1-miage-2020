@@ -5,7 +5,7 @@ NOTE: TP de deux slots de 1h20
 ## Nom des étudiants de ce binôme 
 WARNING: NE PAS OUBLIER DE MENTIONNER LES DEUX NOMS !
 
-#XXXWilliam Tomas# et #Chloé Bail#
+#William Tomas# et #Chloé Bail#
 
 Commentaires éventuels des étudiants : #XXXXXX#
 
@@ -98,6 +98,8 @@ REPONSE: Parce que la dépendance n'est pas injectée, il suffit de rajouter "@I
 ```
 ====
 
+Avec Postman, il faut ajouter les éléments dans "Body", un élément brut "Raw" avec du type JSON.
+
 * Quand les deux endpoints fonctionnent, faire un push vers Github et fermer le projet Eclipse (ne pas le supprimer).
 
 # Exercice 2 - Refactoring en architecture hexagonale
@@ -117,7 +119,31 @@ Source : http://leanpub.com/get-your-hands-dirty-on-clean-architecture[Tom Hombe
 
 IMPORTANT: [Question] Rappeler en quelques lignes les grands principes de cette architecture.
 
+L'architecture respecte les trois grands principes de l'architectture hexagonale qui sont : 
+  - la séparation explicite d'application, domaine et infrastructure
+L'arborescence présente bien ce point :
+```  
+application  
+    port  
+        in
+        out
+adapters
+    persistence
+    rest_api
+domain
+```
+
+  - le domain n'a pas de dépendance sortante mais uniquement des dépendances entrantes
+Le domain, qui est incarné par la classe "todoItem", est utilisé par les autres couches mais ne dépend pas d'elles.
+
+  - la séparation des entrées et des sorties est respectée
+L'arborescence exposée au premier point démontre bien de cette séparation, avec le in et le out.
+
+
+
 Complétez ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui renvoi un code `201` en cas de succès. La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`.
+
+
 
 # Exercice 3 - Ecriture de tests
 _Temps estimé : 20 mins_
