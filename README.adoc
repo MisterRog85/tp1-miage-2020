@@ -143,7 +143,7 @@ L'arborescence exposée au premier point démontre bien de cette séparation, av
 
 Complétez ce code avec une fonctionnalité de création de `TodoItem`  persisté en base et appelé depuis un endpoint REST `POST /todos` qui renvoi un code `201` en cas de succès. La fonctionnalité à implémenter est contractualisée par le port d'entrée `AddTodoItem`.
 
-
+Test avec Postman est effectif après nos changements : on a bien un code 201 - created.
 
 # Exercice 3 - Ecriture de tests
 _Temps estimé : 20 mins_
